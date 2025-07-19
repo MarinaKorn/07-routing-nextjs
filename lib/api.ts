@@ -41,7 +41,7 @@ export const getNotes = async (
 export const postNote = async (noteForPostObj: NoteForPost): Promise<Note> => {
   const res = await axios.post<Note>(`/notes`, noteForPostObj, {
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
     },
   })
 
@@ -51,7 +51,7 @@ export const postNote = async (noteForPostObj: NoteForPost): Promise<Note> => {
 export const deleteNote = async (id: number): Promise<Note> => {
   const res = await axios.delete<Note>(`/notes/${id}`, {
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
     },
   })
 
@@ -61,7 +61,7 @@ export const deleteNote = async (id: number): Promise<Note> => {
 export const fetchNoteById = async (id: number): Promise<Note> => {
   const res = await axios.get<Note>(`/notes/${id}`, {
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
     },
   })
 
