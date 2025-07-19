@@ -31,7 +31,7 @@ export const getNotes = async (
 
   const res = await axios.get<NotesResponse>(url, {
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
     },
   })
 
