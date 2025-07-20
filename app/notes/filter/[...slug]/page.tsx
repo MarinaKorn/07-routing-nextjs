@@ -1,13 +1,20 @@
 import { getNotes } from '../../../../lib/api'
 import NotesClient from './Notes.client'
 
-type Props = {
-  params: { slug: string[] }
+type FilteredNotesProps = {
+  params: Promise<{ slug: string[] }>
 }
 
-export default async function FilteredNotes({ params }: Props) {
-  const tag = params.slug?.[0] || 'All'
-  const notes = tag === 'All' ? await getNotes('', 1) : await getNotes('', 1, tag)
-
-  return <NotesClient initialNotes={notes} tag={tag} />
+export default async function FilteredNotes({ params }: FilteredNotesProps) {
+  const { slug } = await params
+  const notes = slug[0] === 'All' ? await getNotes('', 1) : await getNotes('', 1, slug[0])
+  return (
+    <>
+      {slug[0] === 'All' ? (
+        <NotesClient initialNotes={notes} />
+      ) : (
+        <NotesClient initialNotes={notes} tag={slug[0]} />
+      )}
+    </>
+  )
 }
